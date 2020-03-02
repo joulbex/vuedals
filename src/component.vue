@@ -28,6 +28,7 @@ export default {
                 options
             });
 
+            this.html.classList.add('vuedal-open');
             this.body.classList.add('vuedal-open');
 
             document.querySelector('.vuedals').scrollTop = 0;
@@ -93,6 +94,7 @@ export default {
 
             // And if it was the last window, notify that all instances are destroyed
             if (!this.vuedals.length) {
+                this.html.classList.remove('vuedal-open');
                 this.body.classList.remove('vuedal-open');
                 Bus.$emit('destroyed');
             }
@@ -222,6 +224,12 @@ export default {
             if (typeof document !== 'undefined') {
                 return document.querySelector('body');
             }
+        },
+
+        html() {
+            if (typeof document !== 'undefined') {
+                return document.querySelector('html');
+            }
         }
     }
 }
@@ -245,8 +253,9 @@ export default {
 </template>
 
 <style lang="sass">
+html.vuedal-open,
 body.vuedal-open {
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 .vuedals {
