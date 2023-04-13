@@ -9,12 +9,17 @@ const banner  =
     " @author "+ package.author.name +" <"+ package.author.email +">\n" +
     " "+ package.homepage +"\n" +
     " Released under the MIT License.";
+const path = require('path');
+const { VueLoaderPlugin } = require('vue-loader');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
+
     entry: './src/main.js',
 
     output: {
-        path: './dist/',
+        path: path.resolve(__dirname, 'dist'),
         filename: 'vuedals.js',
         library: 'Vuedals',
         libraryTarget: 'umd',
@@ -26,42 +31,44 @@ module.exports = {
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: __dirname,
                 exclude: /node_modules/
             },
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader'
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
-            }
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.sass$/,
+                use: [
+                    'css-loader',
+                    'sass-loader'
+                ]
+              }
         ]
+    },
+
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
     },
 
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.common.js'
+            //'vue$': 'vue/dist/vue.common.js'
         }
     },
 
     plugins: [
         new webpack.BannerPlugin(banner),
-         new webpack.optimize.UglifyJsPlugin({
-            minimize: false,
-            sourceMap: false,
-            mangle: false,
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: true
-            }
-        })
+        new VueLoaderPlugin()
     ]
 };

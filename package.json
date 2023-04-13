@@ -32,25 +32,24 @@
   },
   "homepage": "https://github.com/javisperez/vuedals",
   "dependencies": {
+    "@babel/runtime": "^7.21.0",
     "macaddress": "^0.2.9",
     "randomatic": "^3.1.1",
-    "vue": "^2.1.10"
+    "vue": "^3.2.36",
+    "vue-loader": "^17.0.1"
   },
   "devDependencies": {
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-stage-2": "^6.22.0",
-    "clean-css": "^4.1.11",
-    "css-loader": "^0.26.1",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^4.1.1",
-    "vue-html-loader": "^1.2.3",
-    "vue-loader": "^10.1.2",
-    "vue-style-loader": "^1.0.0",
-    "vue-template-compiler": "^2.1.10",
-    "webpack": "^1.14.0",
-    "webpack-merge": "^2.6.1"
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/plugin-transform-runtime": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "clean-css": "^5.3.2",
+    "css-loader": "^6.7.3",
+    "node-sass": "^8.0.0",
+    "sass-loader": "^13.2.2",
+    "terser-webpack-plugin": "^5.3.7",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
   }
 }

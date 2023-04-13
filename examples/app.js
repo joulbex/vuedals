@@ -2,7 +2,7 @@ const Bus = Vuedals.Bus;
 const Component = Vuedals.Component;
 const Plugin = Vuedals.default;
 
-Vue.use(Plugin);
+// import { createApp } from 'vue'
 
 // Sample component
 const Sample = {
@@ -119,7 +119,7 @@ const ModalComponent3 = {
 };
 
 // Our app
-new Vue({
+const app = Vue.createApp({
     name: 'example',
 
     el: '#app',
@@ -152,3 +152,5 @@ new Vue({
         <vuedals></vuedals>
     </div>`
 });
+
+app.use(Plugin);

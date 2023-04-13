@@ -1,5 +1,8 @@
 # Vuedals
 
+*For experimental version for Vue 3.x
+[please see the vue3 branch](https://github.com/joulbex/vuedals/tree/vue3)*
+
 VueJS (2.x) Plugin for multiple modals windows with a single component instance.
 
 ## DEMO
