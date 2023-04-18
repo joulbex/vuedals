@@ -1,10 +1,13 @@
 import Bus from './bus';
 import Component from './component.vue';
 
+// TODO: add provide
+// TODO: check commented mixin
+
 export default {
-    install(Vue) {
+    install(app, options) {
         // Global $vuedals property
-        Vue.prototype.$vuedals = new Vue({
+        const vuedals = {
             name: '$vuedals',
 
             created() {
@@ -46,10 +49,12 @@ export default {
                     Bus.$emit('dismiss', index);
                 }
             }
-        });
+        };
+
+        app.config.globalProperties.$vuedals = vuedals;
 
         // Mixer for components
-        Vue.mixin({
+        /*Vue.mixin({
             created() {
                 this.$on('vuedals:new', options => {
                     Bus.$emit('new', options);
@@ -63,7 +68,7 @@ export default {
                     Bus.$emit('dismiss', index);
                 });
             }
-        });
+        });*/
     }
 };
 

@@ -1,4 +1,8 @@
 <script>
+
+// FIXME: <template> tag causes error, only using "template:" property works
+// FIXME: Transitions doesn't work like in 2.x version
+
 import Bus from './bus';
 
 export default {
@@ -76,6 +80,21 @@ export default {
             isMouseDownTriggeredOnSelf: false
         };
     },
+
+    template: `<transition tag="div" name="vuedal">
+        <div class="vuedals" v-show="vuedals.length" tabindex="0" @keyup.esc.prevent="handleEscapeKey($event)" @click="handleBackdropClick()" @mousedown.self="isMouseDownTriggeredOnSelf = true">
+            <div class="vuedal" v-for="(vuedal, index) in vuedals" :key="index" :class="getCssClasses(index)" @click.stop>
+                <header v-if="(vuedal.title || vuedal.dismissable) && !vuedal.header">
+                    <span class="title">{{ vuedal.title }}</span>
+                    <span @click="dismiss()" v-if="vuedal.dismissable" class="close">&times;</span>
+                </header>
+                <header v-if="vuedal.header">
+                    <component :is="vuedal.header.component" v-bind="vuedal.header.props"></component>
+                </header>
+                <component :is="vuedal.component" v-bind="vuedal.props" ref="components"></component>
+            </div>
+        </div>
+    </transition>`,
 
     methods: {
         // Remove the given index from the vuedals array
@@ -237,7 +256,7 @@ export default {
 }
 </script>
 
-<template>
+<!--<template>
 <transition tag="div" name="vuedal">
     <div class="vuedals" v-show="vuedals.length" tabindex="0" @keyup.esc.prevent="handleEscapeKey($event)" @click="handleBackdropClick()" @mousedown.self="isMouseDownTriggeredOnSelf = true">
         <div class="vuedal" v-for="(vuedal, index) in vuedals" :key="index" :class="getCssClasses(index)" @click.stop>
@@ -252,7 +271,7 @@ export default {
         </div>
     </div>
 </transition>
-</template>
+</template>-->
 
 <style lang="sass">
 html.vuedal-open,
