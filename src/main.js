@@ -52,9 +52,10 @@ export default {
         };
 
         app.config.globalProperties.$vuedals = vuedals;
+        app.provide('$vuedals', vuedals);
 
         // Mixer for components
-        /*Vue.mixin({
+        /*app.mixin({
             created() {
                 this.$on('vuedals:new', options => {
                     Bus.$emit('new', options);
