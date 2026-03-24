@@ -276,7 +276,7 @@ export default {
 <style lang="sass">
 html.vuedal-open,
 body.vuedal-open {
-    overflow: hidden !important;
+    overflow: hidden;
 }
 
 .vuedals {
